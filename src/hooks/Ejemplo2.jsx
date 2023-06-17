@@ -38,11 +38,35 @@ const Ejemplo2 = () => {
      * se ejecuta aquello que este dentro del useEffect
      */
 
+    // useEffect(() => {
+    //     console.log('CAMBIO EN EL ESTADO DEL COMPONENTE');
+    //     console.log('Mostrando referencia a elemento del DOM:');
+    //     console.log(miRef);
+    // })
+
+    /**
+     *  ? Caso 2: Ejecutar solo cuando cambie el contador 1
+     * Cada vez que haya un cambio en contador 1, se ejecuta lo que diga el useEffect
+     * En caso de que cambie contador 2, no habrá ejecución 
+     */
+    
+    // useEffect(() => {
+    //   console.log('CAMBIO EN EL ESTADO DEL CONTADOR 1');
+    //   console.log('Mostrando referencia a elemento del DOM:');
+    //   console.log(miRef);
+    // }, [contador1])
+
+    /**
+     *  ? Caso 2: Ejecutar solo cuando cambie el contador 2
+     * Cada vez que haya un cambio en contador 2, se ejecuta lo que diga el useEffect
+     * En caso de que cambie contador 1, no habrá ejecución 
+     */
+
     useEffect(() => {
-        console.log('CAMBIO EN EL ESTADO DEL COMPONENTE');
-        console.log('Mostrando referencia a elemento del DOM:');
-        console.log(miRef);
-    })
+      console.log('CAMBIO EN EL ESTADO DEL CONTADOR 2');
+      console.log('Mostrando referencia a elemento del DOM:');
+      console.log(miRef);
+    }, [Contador2])
     
 
   return (
