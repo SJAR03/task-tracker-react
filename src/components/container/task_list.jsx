@@ -2,9 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { Task } from '../../models/task.class'
 import { LEVELS } from '../../models/levels.enum'
 import TaskComponent from '../pure/task'
+import '../../styles/task.scss'
 
 const Task_listComponent = () => {
 
+  const defaultTask = new Task('Example', 'Default description', false, LEVELS.NORMAL);
+  
   // Estado del componente
   const [tasks, setTasks] = useState([defaultTask]);
   const [loading, setLoading] = useState(true);
@@ -19,9 +22,6 @@ const Task_listComponent = () => {
     }
   }, [tasks])
   
-
-  const defaultTask = new Task('Example', 'Default description', false, LEVELS.NORMAL);
-
   const changeCompleted = (id) => {
     console.log('TODO: Cambiar estado de una tarea');
   }
