@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Task } from '../../models/task.class';
 import '../../styles/task.scss';
+import { LEVELS } from '../../models/levels.enum';
 
 const TaskComponent = ({ task }) => {
   useEffect(() => {
@@ -12,6 +13,49 @@ const TaskComponent = ({ task }) => {
     };
   }, [task]);
 
+  /**
+   * function that returns a badge
+   * depending on the level of the task
+   */
+  function taskLevelBadge() {
+    switch (task.level) {
+      case LEVELS.NORMAL:
+        return (
+          <h6 className='mb-0'>
+            <span className='badge bg-primary'>{task.level}</span>
+          </h6>
+        );
+      case LEVELS.URGENTE:
+        return (
+          <h6 className='mb-0'>
+            {' '}
+            <span className='badge bg-warning'>{task.level}</span>
+          </h6>
+        );
+      case LEVELS.BLOCKING:
+        return (
+          <h6 className='mb-0'>
+            <span className='badge bg-danger'>{task.level}</span>
+          </h6>
+        );
+
+      default:
+        break;
+    }
+  }
+
+  /**
+   *
+   * @returns function that return icon depending of completion of the task
+   */
+  function taskCompletedIcon() {
+    if (task.completed) {
+      return <i className='bi-toggle-on' style={{ color: 'green' }}></i>;
+    } else {
+      return <i className='bi-toggle-on' style={{ color: 'gray' }}></i>;
+    }
+  }
+
   return (
     <tr className='fw-normal'>
       <th>
@@ -21,21 +65,15 @@ const TaskComponent = ({ task }) => {
         <span>{task.description}</span>
       </td>
       <td className='align-middle'>
-        {/* TODO: Sustituir por un badge */}
-        <span>{task.level}</span>
+        {/* Execution of function to return badge element */}
+        {taskLevelBadge()}
       </td>
       <td className='align-middle'>
-        {/* TODO: Sustituir por un icono */}
-        <span>{task.completed ? 'COMPLETED' : 'PENDING'}</span>
+        {/* Execution of function to return icon element depending on completion */}
+        {taskCompletedIcon()}
+        <i className='bi-trash' style={{ color: 'tomato' }}></i>
       </td>
     </tr>
-
-    // <div>
-    //   <h2 className="task-name">Name: {task.name}</h2>
-    //   <h3>Description: {task.description}</h3>
-    //   <h4>Level: {task.level}</h4>
-    //   <h5>This task is: {task.completed ? "COMPLETED" : "PENDING"}</h5>
-    // </div>
   );
 };
 
