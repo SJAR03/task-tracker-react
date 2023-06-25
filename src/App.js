@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+import Father from './components/container/father';
 // import Greeting from './components/pure/greeting'
 // import GreetingF from './components/pure/greetingF';
 import Task_listComponent from './components/container/task_list';
@@ -32,7 +33,9 @@ function App() {
           </h3>
         </Ejemplo4> */}
       {/* </header> */}
-      <Task_listComponent></Task_listComponent>
+      {/* Gestión de eventos */}
+      {/* <Task_listComponent></Task_listComponent> */}
+      <Father></Father>
     </div>
   );
 }
