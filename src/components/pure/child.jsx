@@ -1,23 +1,47 @@
-import { Alert } from 'bootstrap';
-import React from 'react';
+import React, { useRef } from "react";
 
-const child = ({ name }) => {
+const Child = ({ name, send, update }) => {
+  const messageRef = useRef();
+  const nameRef = useRef();
+
   function pressButton() {
-    alert(`Default text`);
+    const text = messageRef.current.value;
+    alert(`Text in input ${text}`);
   }
 
   function pressButtonParams(text) {
     alert(`Text: ${text}`);
   }
 
+  function submitName(e) {
+    e.preventDefault();
+    update(nameRef.current.value);
+  }
+
   return (
-    <div>
-      <p onMouseOver={() => console.log('On mouse over')}>Child Component</p>
-      <button onClick={() => console.log('Pressed button 1')}>Button 1</button>
+    <div style={{ background: "cyan", padding: "30px" }}>
+      <p onMouseOver={() => console.log("On mouse over")}>Hello, {name}</p>
+      <button onClick={() => console.log("Pressed button 1")}>Button 1</button>
       <button onClick={pressButton}>Button 2</button>
-      <button onClick={pressButtonParams('Hola')}>Button 3</button>
+      <button onClick={() => pressButtonParams("Hola")}>Button 3</button>
+      <input
+        placeholder="Send a text to your father"
+        onFocus={() => console.log("Input focused")}
+        onChange={(e) => console.log("Input changed", e.target.value)}
+        onCopy={() => console.log("Copied text from Input")}
+        ref={messageRef}
+      />
+      <button onClick={() => send(messageRef.current.value)}>
+        Send message
+      </button>
+      <div style={{ marginTop: "20px" }}>
+        <form onSubmit={submitName}>
+          <input ref={nameRef} placeholder="New Name" />
+          <button type="submit">Update Name</button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default child;
+export default Child;
