@@ -45,43 +45,69 @@ const Task_listComponent = () => {
     };
   }, [tasks]);
 
-  const changeCompleted = (id) => {
-    console.log('TODO: Cambiar estado de una tarea');
-  };
+  function completedTask(task) {
+    console.log('Complete this task:', task);
+    const index = tasks.indexOf(task);
+    const tempTasks = [...tasks];
+    tempTasks[index].completed = !tempTasks[index].completed;
+    // Update the state of the componente with the new list of tasks and it will update
+    // the iteration of the tasks in order to show the task updated
+  }
+
+  function deleteTask(task) {
+    console.log('Delete this task:', task);
+    const index = tasks.indexOf(task);
+    const tempTask = [...tasks];
+    tempTask.splice(index, 1);
+    setTasks(tempTask);
+  }
+
+  function addTask(task) {
+    console.log('Add this task:', task);
+    const index = tasks.indexOf(task);
+    const tempTask = [...tasks];
+    tempTask.push(task);
+    setTasks(tempTask);
+  }
 
   return (
     <div>
       <div className='col-12'>
-        <div className='card'></div>
-        {/* Card header (title)*/}
-        <div className='card-header p-3'>
-          <h5>Your tasks:</h5>
+        <div className='card'>
+          {/* Card header (title)*/}
+          <div className='card-header p-3'>
+            <h5>Your tasks:</h5>
+          </div>
+          {/* Card body (content) */}
+          <div
+            className='card-body'
+            data-mdb-perfect-scrollbar='true'
+            style={{ position: 'relative', height: '400px' }}>
+            <table>
+              <thead>
+                <tr>
+                  <th scope='col'>Title</th>
+                  <th scope='col'>Description</th>
+                  <th scope='col'>Priority</th>
+                  <th scope='col'>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tasks.map((task, index) => {
+                  return (
+                    <TaskComponent
+                      key={index}
+                      task={task}
+                      complete={completedTask}
+                      deleted={deleteTask}></TaskComponent>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-        {/* Card body (content) */}
-        <div
-          className='card-body'
-          data-mdb-perfect-scrollbar='true'
-          style={{ position: 'relative', height: '400px' }}>
-          <table>
-            <thead>
-              <tr>
-                <th scope='col'>Title</th>
-                <th scope='col'>Description</th>
-                <th scope='col'>Priority</th>
-                <th scope='col'>Actions</th>
-              </tr>
-            </thead>{' '}
-            <tbody>
-              {tasks.map((task, index) => {
-                return <TaskComponent key={index} task={task}></TaskComponent>;
-              })}
-            </tbody>
-          </table>
-        </div>
-        <TaskForm></TaskForm>
       </div>
-      {/* TODO: Aplicar un For/Map para renderizar una lista */}
-      {/* <TaskComponent task={defaultTask}></TaskComponent> */}
+      <TaskForm add={addTask}></TaskForm>
     </div>
   );
 };
