@@ -1,26 +1,21 @@
 /**
- * Componente que va a contener un formulario 
+ * Componente que va a contener un formulario
  * para autentificación de usuarios
  */
 
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-const loginForm = () => {
+const LoginForm = () => {
+  const initialCredentials = [
+    {
+      user: '',
+      pwd: '',
+    },
+  ];
 
-    const initialCredentials = [
-        {
-            user: '',
-            pwd: '',
-        }
-    ];
+  const [credentials, setCredentials] = useState(initialCredentials);
 
-    const [credentials, setCredentials] = useState(initialCredentials)
+  return <div></div>;
+};
 
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default loginForm
+export default LoginForm;

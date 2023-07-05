@@ -1,23 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const registerForm = () => {
+const RegisterForm = () => {
+  const initialData = [
+    {
+      user: '',
+      name: '',
+      pwd: '',
+      email: '',
+    },
+  ];
 
-    const initialData = [
-        {
-            user: '',
-            name: '',
-            pwd: '',
-            email: '',
-        }
-    ];
+  const [data, setData] = useState(initialData);
 
-    const [data, setData] = useState(initialData)
+  return <div></div>;
+};
 
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default registerForm
+export default RegisterForm;
