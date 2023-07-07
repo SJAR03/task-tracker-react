@@ -5,7 +5,7 @@ import TaskComponent from '../pure/task';
 import '../../styles/task.scss';
 import TaskForm from '../pure/forms/taskForm';
 
-const Task_listComponent = () => {
+const TaskListComponent = () => {
   const defaultTask1 = new Task(
     'Example 1',
     'Description 1',
@@ -64,7 +64,6 @@ const Task_listComponent = () => {
 
   function addTask(task) {
     console.log('Add this task:', task);
-    const index = tasks.indexOf(task);
     const tempTask = [...tasks];
     tempTask.push(task);
     setTasks(tempTask);
@@ -112,4 +111,4 @@ const Task_listComponent = () => {
   );
 };
 
-export default Task_listComponent;
+export default TaskListComponent;
