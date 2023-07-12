@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Task } from '../../models/task.class';
-import '../../styles/task.scss';
+import '../../styles/task.css';
 import { LEVELS } from '../../models/levels.enum';
 
 const TaskComponent = ({ task, complete, deleted }) => {
@@ -60,14 +60,26 @@ const TaskComponent = ({ task, complete, deleted }) => {
       return (
         <i
           onClick={() => complete(task)}
-          className='bi-toggle-on task-actions'
+          className='bi-toggle-off task-actions'
           style={{ color: 'gray' }}></i>
       );
     }
   }
 
+  const taskCompleted = {
+    color: 'gray',
+    textDecoration: 'line-through',
+  };
+
+  const taskPending = {
+    color: 'tomato',
+    fontWeight: 'bold',
+  };
+
   return (
-    <tr className='fw-normal'>
+    <tr
+      className='fw-normal'
+      style={task.completed ? taskCompleted : taskPending}>
       <th>
         <span className='ms-2'>{task.name}</span>
       </th>

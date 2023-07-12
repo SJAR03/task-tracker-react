@@ -17,6 +17,9 @@ const TaskForm = ({ add }) => {
       levelRef.current.value
     );
     add(newTask);
+
+    // Vaciar los campos de entrada
+    e.target.reset();
   }
 
   return (
@@ -30,7 +33,7 @@ const TaskForm = ({ add }) => {
           type='text'
           className='form-control form-control-lg'
           required
-          autoFocus
+          // autoFocus
           placeholder='Task name'
         />
         <input

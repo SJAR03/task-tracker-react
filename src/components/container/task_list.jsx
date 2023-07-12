@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Task } from '../../models/task.class';
 import { LEVELS } from '../../models/levels.enum';
 import TaskComponent from '../pure/task';
-import '../../styles/task.scss';
+import '../../styles/task.css';
 import TaskForm from '../pure/forms/taskForm';
 
 const TaskListComponent = () => {
@@ -50,6 +50,7 @@ const TaskListComponent = () => {
     const index = tasks.indexOf(task);
     const tempTasks = [...tasks];
     tempTasks[index].completed = !tempTasks[index].completed;
+    setTasks(tempTasks);
     // Update the state of the componente with the new list of tasks and it will update
     // the iteration of the tasks in order to show the task updated
   }
@@ -69,6 +70,45 @@ const TaskListComponent = () => {
     setTasks(tempTask);
   }
 
+  const Table = () => {
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th scope='col'>Title</th>
+            <th scope='col'>Description</th>
+            <th scope='col'>Priority</th>
+            <th scope='col'>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tasks.map((task, index) => {
+            return (
+              <TaskComponent
+                key={index}
+                task={task}
+                complete={completedTask}
+                deleted={deleteTask}></TaskComponent>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
+  let tasksTable;
+
+  if (tasks.length > 0) {
+    tasksTable = <Table></Table>;
+  } else {
+    tasksTable = (
+      <div>
+        <h3>There are no tasks to show</h3>
+        <h4>Please create one</h4>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className='col-12'>
@@ -77,33 +117,12 @@ const TaskListComponent = () => {
           <div className='card-header p-3'>
             <h5>Your tasks:</h5>
           </div>
+          {tasksTable}
           {/* Card body (content) */}
           <div
             className='card-body'
             data-mdb-perfect-scrollbar='true'
-            style={{ position: 'relative', height: '400px' }}>
-            <table>
-              <thead>
-                <tr>
-                  <th scope='col'>Title</th>
-                  <th scope='col'>Description</th>
-                  <th scope='col'>Priority</th>
-                  <th scope='col'>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tasks.map((task, index) => {
-                  return (
-                    <TaskComponent
-                      key={index}
-                      task={task}
-                      complete={completedTask}
-                      deleted={deleteTask}></TaskComponent>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+            style={{ position: 'relative', height: '400px' }}></div>
         </div>
       </div>
       <TaskForm add={addTask}></TaskForm>
