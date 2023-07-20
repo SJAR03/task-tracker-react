@@ -10,6 +10,7 @@ import TaskListComponent from './components/container/task_list';
 // import Ejemplo4 from './hooks/Ejemplo4';
 // import GreetingStyled from './components/pure/greetingStyled';
 // import OptionalRender from './components/pure/optionalRender';
+import LoginFormik from './components/pure/forms/loginFormik';
 
 function App() {
   return (
@@ -38,7 +39,10 @@ function App() {
       {/* <OptionalRender></OptionalRender> */}
 
       {/* PROYECTO FINAL */}
-      <TaskListComponent></TaskListComponent>
+      {/* <TaskListComponent></TaskListComponent> */}
+
+      {/* Ejemplo de uso de formik y yup */}
+      <LoginFormik></LoginFormik>
     </div>
   );
 }
