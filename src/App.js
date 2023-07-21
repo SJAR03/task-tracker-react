@@ -3,14 +3,15 @@ import './App.css';
 // import Father from './components/container/father';
 // import Greeting from './components/pure/greeting'
 // import GreetingF from './components/pure/greetingF';
-import TaskListComponent from './components/container/task_list';
+// import TaskListComponent from './components/container/task_list';
 // import Ejemplo1 from './hooks/Ejemplo1';
 // import Ejemplo2 from './hooks/Ejemplo2';
 // import MiComponenteConContexto from './hooks/Ejemplo3';
 // import Ejemplo4 from './hooks/Ejemplo4';
 // import GreetingStyled from './components/pure/greetingStyled';
 // import OptionalRender from './components/pure/optionalRender';
-import LoginFormik from './components/pure/forms/loginFormik';
+// import LoginFormik from './components/pure/forms/loginFormik';
+import RegisterFormik from './components/pure/forms/registerFormik';
 
 function App() {
   return (
@@ -42,7 +43,9 @@ function App() {
       {/* <TaskListComponent></TaskListComponent> */}
 
       {/* Ejemplo de uso de formik y yup */}
-      <LoginFormik></LoginFormik>
+      {/* <LoginFormik></LoginFormik> */}
+
+      <RegisterFormik></RegisterFormik>
     </div>
   );
 }
